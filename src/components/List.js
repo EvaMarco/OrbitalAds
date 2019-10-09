@@ -5,7 +5,7 @@ import Filters from './Filters';
 import '../scss/List.scss';
 
 const List = props => {
-const {data, query, getSelectValue, getUserInput, result, selectedCities} = props
+const {data, query, getSelectValue, getUserInput, result, selectedCities, allSelected} = props
   const cities = data.cities
     .filter(item => {
       return item.name.toUpperCase().includes(query.toUpperCase())
@@ -21,7 +21,7 @@ const {data, query, getSelectValue, getUserInput, result, selectedCities} = prop
           id="all" 
           value="all"
           onChange={getSelectValue}
-          checked = {selectedCities[0]==='all'}
+          checked = {allSelected=== true}
         />
         <p className = "results__counter-text">{cities.length} items</p>
       </div>

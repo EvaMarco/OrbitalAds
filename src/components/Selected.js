@@ -15,14 +15,14 @@ const Selected = props => {
       {result.map((item)=>{
         return(
           <li key={item.id} className="selected__list-city">
-          <City city={item}/>  
-          <button 
-            data-key={item.name}
-            className="btn delete__btn" 
-            onClick = {clearSelected}
-          >
-            x
-          </button>
+            <City city={item}/>  
+            <button 
+              data-key={item.name}
+              className="btn delete__btn" 
+              onClick = {clearSelected}
+            >
+              x
+            </button>
           </li>
         )
         }
