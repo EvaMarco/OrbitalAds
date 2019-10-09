@@ -1,29 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import City from './City';
+import '../scss/Selected.scss'; 
 
 const Selected = props => {
-  const {selectedCities, data} = props;
-  let result = [];
-  if(selectedCities[0] === 'all'){
-    result = data.cities;
-    console.log(result);
-  }
-  else{
-    for(let item of selectedCities){
-      let obj = data.cities.find(o => o.id === item);
-      result.push(obj);
-    }
-    console.log(result);
-  }
-
+  const {clearAllSelected, clearSelected, result} = props;
   return(
     <div className="selected">
-      <ul>
+      <div className="clear__box">
+        <p className="selected__items">{result.length} items</p>
+        <button className="btn clear__btn" onClick = {clearAllSelected}>clear</button>
+      </div>
+      <ul className="selected__list">
       {result.map((item)=>{
         return(
-          <li key={item.id} className="list__city">
+          <li key={item.id} className="selected__list-city">
           <City city={item}/>  
+          <button 
+            data-key={item.name}
+            className="btn delete__btn" 
+            onClick = {clearSelected}
+          >
+            x
+          </button>
           </li>
         )
         }
@@ -34,8 +33,9 @@ const Selected = props => {
 }
 
 Selected.propTypes = {
-  selectedCities: PropTypes.array.isRequired,
-  data: PropTypes.object.isRequired
+  result: PropTypes.arrayOf(PropTypes.object).isRequired, 
+  clearAllSelected: PropTypes.func.isRequired,
+  clearSelected: PropTypes.func.isRequired
 }
 
 export default Selected;

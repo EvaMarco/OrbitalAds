@@ -1,0 +1,18 @@
+.city__logo{
+  width: 50px; 
+  height: 50px;
+  margin: 10px 10px; 
+}
+.city{
+  display: flex;
+}
+.city__list-item{
+  padding: 10px 0; 
+}
+.city__names{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}

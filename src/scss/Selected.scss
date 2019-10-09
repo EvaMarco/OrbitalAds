@@ -1,0 +1,37 @@
+.selected__list{
+  list-style: none; 
+}
+.selected__list-city{
+  display:flex; 
+  align-items: center; 
+}
+.btn{
+  border: none; 
+  background: none; 
+}
+
+.clear__box{
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  height: 43px; 
+  border: 1px solid lightgray; 
+  padding: 10px; 
+}
+.clear__btn{
+  color: #0C81CE; 
+  text-transform: uppercase; 
+  cursor: pointer; 
+}
+.selected__list-city{
+  padding-right: 15px; 
+  display:flex; 
+  align-items: center; 
+  justify-content: space-between; 
+}
+.delete__btn{
+  color: slategrey; 
+  text-transform: uppercase; 
+  cursor: pointer; 
+  font-size: 20px; 
+}

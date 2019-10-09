@@ -1,4 +1,5 @@
 import React from 'react';
+import '../scss/Header.scss';
 
 const Header = () => {
     return (
@@ -7,5 +8,4 @@ const Header = () => {
       </div>
     );
 }
-
 export default Header;

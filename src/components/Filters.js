@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../scss/Filters.scss'; 
 
 const Filters = props => {
   const {getUserInput} = props
@@ -11,7 +12,7 @@ const Filters = props => {
           name="text" 
           id="input" 
           className="input-text" 
-          placeholder="Search by name"
+          placeholder={'Search by name'}
           onChange={getUserInput}
         />
       </div>
