@@ -4,27 +4,35 @@ import City from './City';
 
 const Selected = props => {
   const {selectedCities, data} = props;
-    // const foo = data.find(item=>item.name.toUpperCase() === data.cities.name);
-    // console.log(foo)
-    if(selectedCities === ['all']){
-      return(
-        <div className="selected">
-          <ul>
-          {data.map((item)=>{return(
-            <li key={item.id} className="list__city">
-            <City city={item}/>  
-            </li>
-          )})}
-          </ul>
-        </div>
-      )
+  let result = [];
+  if(selectedCities[0] === 'all'){
+    result = data.cities;
+    console.log(result);
+  }
+  else{
+    for(let item of selectedCities){
+      let obj = data.cities.find(o => o.id === item);
+      result.push(obj);
     }
-    else{
-      return(
-        <p>Aun no hay lista</p>
-      )
-    }
+    console.log(result);
+  }
+
+  return(
+    <div className="selected">
+      <ul>
+      {result.map((item)=>{
+        return(
+          <li key={item.id} className="list__city">
+          <City city={item}/>  
+          </li>
+        )
+        }
+      )}
+      </ul>
+    </div>
+  )
 }
+
 Selected.propTypes = {
   selectedCities: PropTypes.array.isRequired,
   data: PropTypes.object.isRequired

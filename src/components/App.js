@@ -24,7 +24,7 @@ class App extends React.Component {
   getSelectValue(event){
     const selectValue = event.currentTarget.value;
     if(selectValue === "all"){
-      if(this.state.selectedCities === ['all']){
+      if(this.state.selectedCities[0] === 'all'){
         this.setState({selectedCities: []})
       }
       else{

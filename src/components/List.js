@@ -25,14 +25,16 @@ const {data, query, getSelectValue} = props
       .map((item)=>{
           return(
             <li key={item.id} className="list__city">
-              <input 
-                type="checkbox" 
-                name="city" 
-                id={item.name} 
-                value={item.id} 
-                onChange={getSelectValue}
-              />
-              <City city={item}/>  
+              <label htmlFor={item.name}>
+                <input 
+                  type="checkbox" 
+                  name="city" 
+                  id={item.name} 
+                  value={item.id} 
+                  onChange={getSelectValue}
+                />
+                <City city={item}/>  
+              </label>
             </li>
           )
         }
