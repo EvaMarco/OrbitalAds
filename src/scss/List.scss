@@ -1,14 +1,17 @@
 
 .results__counter{
+  position: fixed; 
+  top: 91px; 
+  left:0;
+  width: 50%; 
   display:flex; 
   align-items: center; 
   border: 1px solid lightgray; 
   padding-left: 10px;
-}
-.result__list{
-  list-style: none; 
+  background-color: white; 
 }
 .city__list{
+  margin-top: 130px; 
   padding-left: 10px;
   border: 1px solid lightgray; 
 }

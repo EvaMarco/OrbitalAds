@@ -1,6 +1,11 @@
 .filters{
   border: 1px solid lightgray; 
   padding:0 10px; 
+  position:fixed;
+  top: 48px;
+  left:0;
+  width: 50%; 
+  background-color: white; 
 }
 
 .input-text{

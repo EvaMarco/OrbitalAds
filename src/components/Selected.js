@@ -32,7 +32,7 @@ const Selected = props => {
             <li key={item.id} className="selected__list-city">
               <City city={item}/>  
               <button 
-                data-key={item.name}
+                data-key={item.id}
                 className="btn delete__btn" 
                 onClick = {clearSelected}
               >

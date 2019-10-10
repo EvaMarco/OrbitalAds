@@ -1,9 +1,6 @@
 .selected__list{
   list-style: none; 
-}
-.selected__list-city{
-  display:flex; 
-  align-items: center; 
+  margin-top: 91px; 
 }
 .btn{
   border: none; 
@@ -11,12 +8,17 @@
 }
 
 .clear__box{
+  position: fixed;
+  top: 48px;
+  left:50%;
+  width: 50%;  
   display: flex; 
   align-items: center; 
   justify-content: space-between; 
   height: 43px; 
   border: 1px solid lightgray; 
   padding: 10px; 
+  background-color: white;
 }
 .clear__btn{
   color: #0C81CE; 
