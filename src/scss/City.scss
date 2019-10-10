@@ -1,7 +1,11 @@
 .city__logo{
-  width: 50px; 
-  height: 50px;
-  margin: 10px 10px; 
+  display: none;
+  @media (min-width: 450px){
+    width: 50px; 
+    height: 50px;
+    margin: 10px 10px; 
+    display: block
+  }
 }
 .city{
   display: flex;

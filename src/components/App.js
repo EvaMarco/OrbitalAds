@@ -125,7 +125,9 @@ class App extends React.Component {
       }
       else {
         const allArray = []
-        for (let item of this.state.data) {
+        for (let item of this.state.data.filter((item => {
+          return item.name.toUpperCase().includes(this.state.query.toUpperCase())
+          }))) {
           allArray.push(item)
         }
         this.setState({ selectedCities: allArray, allSelected: true })

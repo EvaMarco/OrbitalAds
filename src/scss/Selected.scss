@@ -1,12 +1,15 @@
+.selected{
+  display: flex;
+  flex-direction: column;
+}
 .selected__list{
   list-style: none; 
   margin-top: 91px; 
   border: 1px solid lightgray; 
-  min-height: 83vh; 
+  flex-grow: 1;
 }
 .btn{
   border: none; 
-
 }
 .clear__box{
   position: fixed;
@@ -44,4 +47,5 @@
   padding: 20px; 
   display: flex;
   justify-content: space-between; 
+  border: 1px solid lightgray; 
 }
