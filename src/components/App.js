@@ -9,10 +9,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state =  {
-      data: Data,
+      data: Data.cities,
+      filterCities : Data.cities,
       query:'',
       selectedCities:[], 
-      result:[],
       allSelected:false
     }
     this.getUserInput = this.getUserInput.bind(this);
@@ -20,77 +20,77 @@ class App extends React.Component {
     this.clearAllSelected = this.clearAllSelected.bind(this);
     this.clearSelected = this.clearSelected.bind(this);
   }
-
   getUserInput(event){
     const inputValue = event.currentTarget.value;
     this.setState({query: inputValue});
   }
   getSelectValue(event){
     const selectValue = event.currentTarget.value;
-    if(selectValue === "all"){
+    this.setSelected(selectValue);
+  }
+  setSelected(city){ 
+    if(city === "all"){
       if(this.state.allSelected === true){
-        this.setState({selectedCities: [], allSelected: false}, () => {this.setSelected()})     
+        this.setState({selectedCities: [], allSelected: false})     
       }
       else{
         const allArray = []
-        for(let item of this.state.data.cities){
+        for(let item of this.state.data){
           allArray.push(item)
         }
-        console.log(allArray)
-        this.setState({selectedCities: allArray, allSelected: true}, () => {this.setSelected()})
+        this.setState({selectedCities: allArray, allSelected: true})
       }
     }
     else{
-      if (this.state.selectedCities.indexOf(selectValue) > -1) {
-        const index = this.state.selectedCities.indexOf(selectValue);
+      if(this.state.selectedCities.length === 0){
+        console.log('entro en el if')
+        const newCity = this.state.data.find(item => item.id === city);
+        console.log(newCity)
+        this.setState(prevState => ({
+          selectedCities: [...prevState.selectedCities, newCity]
+        }))
+      }
+      else if(this.state.allSelected === true){
+        console.log('entro en el else if')
+        const index = this.state.selectedCities.findIndex(item => item.id === city);
         const newArray = [...this.state.selectedCities];
         newArray.splice(index, 1)
-        this.setState({selectedCities: newArray}, () => {this.setSelected()});  
-      } 
-      else {
-        this.setState(prevState => ({
-          selectedCities: [...prevState.selectedCities, selectValue]
-        }), () => {this.setSelected()});        
+        this.setState({selectedCities: newArray, allSelected: false})     
       }
-    }
-  }
-  setSelected(){ 
-    if(this.state.allSelected === true){
-      const cities = this.state.data.cities;
-        const filtered = cities.filter(item => {
-          return item.name.toUpperCase().includes(this.state.query.toUpperCase())
-        });
-        if(filtered.length !== cities.length){
-          this.setState({
-            result: filtered, allSelected: false
-          })
-        }else{
-          this.setState({
-            result: filtered
-          })
+      else{
+        console.log('entro en el else')
+        if(this.state.selectedCities.find(item => item.id === city)){
+          const index = this.state.selectedCities.findIndex(item => item.id === city);
+          const newArray = [...this.state.selectedCities];
+          newArray.splice(index, 1)
+          this.setState({selectedCities: newArray}) 
         }
-
-    }
-    else{
-      const newArray=[]
-      for(let item of this.state.selectedCities){
-        let obj = this.state.data.cities.find(o => o.id === item);
-        newArray.push(obj);
+        else{
+          const selectedCity = this.state.data.find(item => item.id === city)
+          this.setState(prevState => ({
+            selectedCities: [...prevState.selectedCities, selectedCity]
+          }))
+        }
       }
-      const filteredArray = newArray.filter(item => {
-        return item.name.toUpperCase().includes(this.state.query.toUpperCase())
-      });
-      this.setState({
-        result: filteredArray
-      })
-    }   
+    }
   }
   clearAllSelected(){
-    this.setState({result:[], selectedCities:[], allSelected: false})
+    this.setState({selectedCities:[], allSelected: false})
   }
   clearSelected(event){
     const key = event.currentTarget.dataset.key; 
-    console.log(key)
+    if(this.state.allSelected === true){
+      const index = this.state.selectedCities.findIndex(item => item.id === key);
+      const newArray = [...this.state.selectedCities];
+      newArray.splice(index, 1)
+      this.setState({selectedCities: newArray, allSelected: false});
+    }
+    else{
+      const index = this.state.selectedCities.findIndex(item => item.id === key);
+      const newArray = [...this.state.selectedCities];
+      newArray.splice(index, 1)
+      this.setState({selectedCities: newArray});
+    }
   }
   render() {
     return (
@@ -100,16 +100,16 @@ class App extends React.Component {
           <List 
             allSelected =  {this.state.allSelected}
             selectedCities = {this.state.selectedCities}
-            result = {this.state.result}
             data = {this.state.data} 
-            query = {this.state.query} 
+            query = {this.state.query}
             getSelectValue = {this.getSelectValue} 
             getUserInput = {this.getUserInput}
           />
           <Selected 
-            result = {this.state.result}
+            query = {this.state.query}
             clearAllSelected = {this.clearAllSelected}
             clearSelected = {this.clearSelected}
+            selectedCities = {this.state.selectedCities}
           />
         </div>
       </div>

@@ -6,11 +6,11 @@ import '../scss/City.scss';
 const City = props => {
   const {city} = props;
   return (
-    <div className="city">
-      <img className="city__logo"src={logo} alt="city"/>
-      <div className="city__names">
-        <p className ="city__name">{city.name}</p>
-        <p className="city__chineseName">{city.chineseName}</p>
+    <div className = "city">
+      <img className = "city__logo" src = {logo} alt = "city"/>
+      <div className = "city__names">
+        <p className = "city__name">{city.name}</p>
+        <p className = "city__chineseName">{city.chineseName}</p>
       </div>
     </div>
   );

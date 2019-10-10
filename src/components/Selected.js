@@ -4,15 +4,25 @@ import City from './City';
 import '../scss/Selected.scss'; 
 
 const Selected = props => {
-  const {clearAllSelected, clearSelected, result} = props;
+  const {
+    clearAllSelected, 
+    clearSelected, 
+    selectedCities, 
+    query
+  } = props;
+  const cities = selectedCities
+  .filter(item => {
+    return item.name.toUpperCase().includes(query.toUpperCase())
+    }
+  );
   return(
     <div className="selected">
       <div className="clear__box">
-        <p className="selected__items">{result.length} items</p>
+        <p className="selected__items">{cities.length} items</p>
         <button className="btn clear__btn" onClick = {clearAllSelected}>clear</button>
       </div>
       <ul className="selected__list">
-      {result.map((item)=>{
+      {cities.map((item)=>{
         return(
           <li key={item.id} className="selected__list-city">
             <City city={item}/>  
@@ -33,9 +43,10 @@ const Selected = props => {
 }
 
 Selected.propTypes = {
-  result: PropTypes.arrayOf(PropTypes.object).isRequired, 
+  selectedCities: PropTypes.arrayOf(PropTypes.object).isRequired, 
   clearAllSelected: PropTypes.func.isRequired,
-  clearSelected: PropTypes.func.isRequired
+  clearSelected: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired
 }
 
 export default Selected;
