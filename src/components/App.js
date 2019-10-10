@@ -16,7 +16,9 @@ class App extends React.Component {
       init: 0, 
       end: 20, 
       initSelect: 0,
-      endSelect: 20
+      endSelect: 20,
+      listPage:1,
+      selectPage:1,
     }
     this.getUserInput = this.getUserInput.bind(this);
     this.getSelectValue = this.getSelectValue.bind(this);
@@ -30,13 +32,15 @@ class App extends React.Component {
  
   prevPage(){
     const preInit = this.state.init;
-    if(preInit > 0){
+    if(this.state.listPage !== 1){
       const newInit = preInit - 21;
       const preEnd = this.state.end;
       const newEnd = preEnd - 21;
+      const newPage = this.state.listPage - 1;
         this.setState({
           init: newInit, 
-          end: newEnd
+          end: newEnd,
+          listPage : newPage
         })
     }else{
       console.log('error'); 
@@ -44,16 +48,18 @@ class App extends React.Component {
   }
   nextPage(){
     const preEnd = this.state.end;
-    if(preEnd < this.state.data.length.filter((item => {
+    if(preEnd < this.state.data.filter((item => {
       return item.name.toUpperCase().includes(this.state.query.toUpperCase())
       }
-    ))){
+    )).length){
       const preInit = this.state.init;
       const newInit = preInit + 21;
       const newEnd = preEnd + 21;
+      const newPage = this.state.listPage + 1;
       this.setState({
         init: newInit, 
-        end: newEnd
+        end: newEnd,
+        listPage: newPage
       })
     }
     else{
@@ -62,13 +68,15 @@ class App extends React.Component {
   }
   prevPageSelect(){
     const preInit = this.state.initSelect;
-    if(preInit > 0){
+    if(this.state.selectPage !== 1){
       const newInit = preInit - 21;
       const preEnd = this.state.endSelect;
       const newEnd = preEnd - 21;
+      const newPage = this.state.selectPage - 1; 
         this.setState({
           initSelect: newInit, 
-          endSelect: newEnd
+          endSelect: newEnd,
+          selectPage: newPage
         })
     }else{
       console.log('error'); 
@@ -78,21 +86,21 @@ class App extends React.Component {
     const preEnd = this.state.endSelect;
     if(preEnd < this.state.selectedCities.filter((item => {
       return item.name.toUpperCase().includes(this.state.query.toUpperCase())
-      }
-    )).length){
+      })).length){
       const preInit = this.state.initSelect;
       const newInit = preInit + 21;
       const newEnd = preEnd + 21;
+      const newPage = this.state.selectPage + 1; 
       this.setState({
         initSelect: newInit, 
-        endSelect: newEnd
+        endSelect: newEnd, 
+        selectPage: newPage
       })
     }
     else{
       console.log('error'); 
     }
   }
-
   getUserInput(event) {
     const inputValue = event.currentTarget.value;
     this.setState({ 
@@ -100,7 +108,10 @@ class App extends React.Component {
       init: 0, 
       end: 20, 
       initSelect: 0,
-      endSelect: 20
+      endSelect: 20,
+      listPage: 1, 
+      selectPage: 1,
+      allSelected: false
     });
   }
   getSelectValue(event) {
@@ -190,6 +201,7 @@ class App extends React.Component {
             end = {this.state.end}
             nextPage = {this.nextPage}
             prevPage = {this.prevPage}
+            listPage = {this.state.listPage}
           />
           <Selected
             query = {this.state.query}
@@ -200,6 +212,7 @@ class App extends React.Component {
             endSelect = {this.state.endSelect}
             nextPageSelect = {this.nextPageSelect}
             prevPageSelect = {this.prevPageSelect}
+            selectPage = {this.state.selectPage}
           />
         </div>
       </div>

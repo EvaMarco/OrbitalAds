@@ -12,7 +12,8 @@ const Selected = props => {
     initSelect, 
     endSelect, 
     prevPageSelect,
-    nextPageSelect
+    nextPageSelect, 
+    selectPage
   } = props;
   const cities = selectedCities
     .filter(item => {
@@ -49,8 +50,15 @@ const Selected = props => {
           })
         }
       </ul>
-      <button onClick = {prevPageSelect}>prev page</button>
-      <button onClick = {nextPageSelect}>next page</button>
+      <div className="selected__pages">
+        <button className = "btn prevPage__btn" onClick = {prevPageSelect}>
+        &lt;
+        </button>
+        <p className="list__page">Page {selectPage}</p>
+        <button className = "btn nextPage__btn" onClick = {nextPageSelect}>
+        &gt;
+        </button>
+      </div>
     </div>
   )
 }
@@ -59,7 +67,12 @@ Selected.propTypes = {
   selectedCities: PropTypes.arrayOf(PropTypes.object).isRequired, 
   clearAllSelected: PropTypes.func.isRequired,
   clearSelected: PropTypes.func.isRequired,
-  query: PropTypes.string.isRequired
+  query: PropTypes.string.isRequired, 
+  initSelect: PropTypes.number.isRequired, 
+  endSelect: PropTypes.number.isRequired, 
+  prevPageSelect: PropTypes.func.isRequired,
+  nextPageSelect: PropTypes.func.isRequired,
+  selectPage: PropTypes.number.isRequired
 }
 
 export default Selected;

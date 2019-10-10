@@ -2,10 +2,11 @@
   list-style: none; 
   margin-top: 91px; 
   border: 1px solid lightgray; 
+  min-height: 83vh; 
 }
 .btn{
   border: none; 
-  background: none; 
+
 }
 .clear__box{
   position: fixed;
@@ -21,6 +22,7 @@
   background-color: white;
 }
 .clear__btn{
+  background: none; 
   color: #0C81CE; 
   text-transform: uppercase; 
   cursor: pointer; 
@@ -32,8 +34,14 @@
   justify-content: space-between; 
 }
 .delete__btn{
+  background: none; 
   color: slategrey; 
   text-transform: uppercase; 
   cursor: pointer; 
   font-size: 20px; 
+}
+.selected__pages{
+  padding: 20px; 
+  display: flex;
+  justify-content: space-between; 
 }

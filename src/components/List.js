@@ -15,7 +15,8 @@ const {
   init, 
   end, 
   prevPage,
-  nextPage
+  nextPage, 
+  listPage
 } = props
   const cities = data
     .filter(item => {
@@ -62,17 +63,31 @@ const {
         )
       }
       </ul>
-      <button onClick = {prevPage}>prev page</button>
-      <button onClick = {nextPage}>next page</button>
+      <div className="list__pages">
+        <button className = "btn prevPage__btn" onClick = {prevPage}>
+        &lt;
+        </button>
+        <p className="list__page">Page {listPage}</p>
+        <button className = "btn nextPage__btn" onClick = {nextPage}>
+        &gt;
+        </button>
+      </div>
     </div>
   )
 }
+
 List.propTypes = {
   getSelectValue: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.object).isRequired, 
   query: PropTypes.string.isRequired,
   getUserInput: PropTypes.func.isRequired, 
   selectedCities: PropTypes.arrayOf(PropTypes.object).isRequired, 
-  allSelected: PropTypes.bool
+  allSelected: PropTypes.bool, 
+  init: PropTypes.number.isRequired, 
+  end: PropTypes.number.isRequired, 
+  prevPage: PropTypes.func.isRequired,
+  nextPage: PropTypes.func.isRequired,
+  listPage: PropTypes.number.isRequired
 }
+
 export default List;

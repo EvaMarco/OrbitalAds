@@ -14,6 +14,7 @@
   margin-top: 130px; 
   padding-left: 10px;
   border: 1px solid lightgray; 
+  min-height: 79vh;
 }
 .city__list-label{
   cursor: pointer; 
@@ -48,4 +49,25 @@ margin-left: 15px;
 	top: 0px;
 	left: 3px;
 	color: #ffffff;
+}
+.list__pages{
+  padding: 20px; 
+  display: flex;
+  justify-content: space-between; 
+}
+.prevPage__btn{
+  background-color: #0d81ce;
+  width: 30px; 
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  font-size: 22px; 
+}
+.nextPage__btn{
+  background-color: #0d81ce;
+  width: 30px; 
+  height: 30px;
+  border-radius: 50%;
+  color: white;
+  font-size: 22px; 
 }
