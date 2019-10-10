@@ -11,32 +11,36 @@ const Selected = props => {
     query
   } = props;
   const cities = selectedCities
-  .filter(item => {
-    return item.name.toUpperCase().includes(query.toUpperCase())
-    }
-  );
+    .filter(item => {
+      return item.name.toUpperCase().includes(query.toUpperCase())
+      }
+    );
   return(
     <div className="selected">
       <div className="clear__box">
         <p className="selected__items">{cities.length} items</p>
-        <button className="btn clear__btn" onClick = {clearAllSelected}>clear</button>
+        <button 
+          className="btn clear__btn" 
+          onClick = {clearAllSelected}
+        >
+          clear
+        </button>
       </div>
       <ul className="selected__list">
-      {cities.map((item)=>{
-        return(
-          <li key={item.id} className="selected__list-city">
-            <City city={item}/>  
-            <button 
-              data-key={item.name}
-              className="btn delete__btn" 
-              onClick = {clearSelected}
-            >
-              x
-            </button>
-          </li>
-        )
-        }
-      )}
+        {cities.map((item)=>{
+          return(
+            <li key={item.id} className="selected__list-city">
+              <City city={item}/>  
+              <button 
+                data-key={item.name}
+                className="btn delete__btn" 
+                onClick = {clearSelected}
+              >
+                x
+              </button>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

@@ -10,7 +10,7 @@ const City = props => {
       <img className = "city__logo" src = {logo} alt = "city"/>
       <div className = "city__names">
         <p className = "city__name">{city.name}</p>
-        <p className = "city__chineseName">{city.chineseName}</p>
+        <p className = "city__metadata">{city.chineseName}</p>
       </div>
     </div>
   );
