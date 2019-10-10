@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import City from './City';
-import '../scss/Selected.scss'; 
+import './Selected.scss'; 
 
 const Selected = props => {
   const {
@@ -15,11 +15,13 @@ const Selected = props => {
     nextPageSelect, 
     selectPage
   } = props;
+
   const cities = selectedCities
     .filter(item => {
       return item.name.toUpperCase().includes(query.toUpperCase())
       }
     );
+    
   return(
     <div className="selected">
       <div className="clear__box">
@@ -54,7 +56,7 @@ const Selected = props => {
         <button className = "btn prevPage__btn" onClick = {prevPageSelect}>
         &lt;
         </button>
-        <p className="list__page">Page {selectPage}</p>
+        <p className="list__page">Page {selectPage}  of {Math.ceil(cities.length/20)}</p>
         <button className = "btn nextPage__btn" onClick = {nextPageSelect}>
         &gt;
         </button>

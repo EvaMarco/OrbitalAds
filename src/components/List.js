@@ -2,27 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import City from './City';
 import Filters from './Filters';
-import '../scss/List.scss';
+import './List.scss';
 
 const List = props => {
-const {
-  data, 
-  query, 
-  getSelectValue, 
-  getUserInput, 
-  selectedCities, 
-  allSelected, 
-  init, 
-  end, 
-  prevPage,
-  nextPage, 
-  listPage
-} = props
+  const {
+    data, 
+    query, 
+    getSelectValue, 
+    getUserInput, 
+    selectedCities, 
+    allSelected, 
+    init, 
+    end, 
+    prevPage,
+    nextPage, 
+    listPage
+  } = props
+
   const cities = data
     .filter(item => {
       return item.name.toUpperCase().includes(query.toUpperCase())
       }
     );
+    
   return(
     <div className="results">
       <Filters getUserInput = {getUserInput}/>
@@ -67,7 +69,7 @@ const {
         <button className = "btn prevPage__btn" onClick = {prevPage}>
         &lt;
         </button>
-        <p className="list__page">Page {listPage}</p>
+        <p className="list__page">Page {listPage} of {Math.ceil(cities.length/20)}</p>
         <button className = "btn nextPage__btn" onClick = {nextPage}>
         &gt;
         </button>

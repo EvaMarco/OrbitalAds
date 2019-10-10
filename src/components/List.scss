@@ -15,6 +15,7 @@
   padding-left: 10px;
   border: 1px solid lightgray; 
   min-height: 79vh;
+  list-style: none; 
 }
 .city__list-label{
   cursor: pointer; 
@@ -55,6 +56,9 @@ margin-left: 15px;
   display: flex;
   justify-content: space-between; 
   border: 1px solid lightgray; 
+}
+.list__page{
+  text-align: center; 
 }
 .prevPage__btn{
   background-color: #0d81ce;
