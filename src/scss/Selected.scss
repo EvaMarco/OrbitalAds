@@ -1,12 +1,12 @@
 .selected__list{
   list-style: none; 
   margin-top: 91px; 
+  border: 1px solid lightgray; 
 }
 .btn{
   border: none; 
   background: none; 
 }
-
 .clear__box{
   position: fixed;
   top: 48px;
@@ -26,7 +26,7 @@
   cursor: pointer; 
 }
 .selected__list-city{
-  padding-right: 15px; 
+  padding: 10px 15px 10px 0; 
   display:flex; 
   align-items: center; 
   justify-content: space-between; 

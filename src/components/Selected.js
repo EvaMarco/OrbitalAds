@@ -8,7 +8,11 @@ const Selected = props => {
     clearAllSelected, 
     clearSelected, 
     selectedCities, 
-    query
+    query,
+    initSelect, 
+    endSelect, 
+    prevPageSelect,
+    nextPageSelect
   } = props;
   const cities = selectedCities
     .filter(item => {
@@ -27,21 +31,26 @@ const Selected = props => {
         </button>
       </div>
       <ul className="selected__list">
-        {cities.map((item)=>{
-          return(
-            <li key={item.id} className="selected__list-city">
-              <City city={item}/>  
-              <button 
-                data-key={item.id}
-                className="btn delete__btn" 
-                onClick = {clearSelected}
-              >
-                x
-              </button>
-            </li>
-          )
-        })}
+        {cities
+          .slice(initSelect, endSelect)
+          .map((item)=>{
+            return(
+              <li key={item.id} className="selected__list-city">
+                <City city={item}/>  
+                <button 
+                  data-key={item.id}
+                  className="btn delete__btn" 
+                  onClick = {clearSelected}
+                >
+                  x
+                </button>
+              </li>
+            )
+          })
+        }
       </ul>
+      <button onClick = {prevPageSelect}>prev page</button>
+      <button onClick = {nextPageSelect}>next page</button>
     </div>
   )
 }

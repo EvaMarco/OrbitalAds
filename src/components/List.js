@@ -11,7 +11,11 @@ const {
   getSelectValue, 
   getUserInput, 
   selectedCities, 
-  allSelected
+  allSelected, 
+  init, 
+  end, 
+  prevPage,
+  nextPage
 } = props
   const cities = data
     .filter(item => {
@@ -35,6 +39,7 @@ const {
       </div>
       <ul className="city__list">
       {cities
+        .slice(init, end)
         .map((item)=>{
             return(
               <li key={item.id} className="city__list-item">
@@ -57,6 +62,8 @@ const {
         )
       }
       </ul>
+      <button onClick = {prevPage}>prev page</button>
+      <button onClick = {nextPage}>next page</button>
     </div>
   )
 }

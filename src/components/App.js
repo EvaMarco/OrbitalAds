@@ -12,17 +12,96 @@ class App extends React.Component {
       data: Data.cities,
       query: '',
       selectedCities: [],
-      allSelected: false
+      allSelected: false,  
+      init: 0, 
+      end: 20, 
+      initSelect: 0,
+      endSelect: 20
     }
     this.getUserInput = this.getUserInput.bind(this);
     this.getSelectValue = this.getSelectValue.bind(this);
     this.clearAllSelected = this.clearAllSelected.bind(this);
     this.clearSelected = this.clearSelected.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.prevPage = this.prevPage.bind(this);
+    this.nextPageSelect = this.nextPageSelect.bind(this);
+    this.prevPageSelect = this.prevPageSelect.bind(this);
+  }
+ 
+  prevPage(){
+    const preInit = this.state.init;
+    if(preInit > 0){
+      const newInit = preInit - 21;
+      const preEnd = this.state.end;
+      const newEnd = preEnd - 21;
+        this.setState({
+          init: newInit, 
+          end: newEnd
+        })
+    }else{
+      console.log('error'); 
+    }
+  }
+  nextPage(){
+    const preEnd = this.state.end;
+    if(preEnd < this.state.data.length.filter((item => {
+      return item.name.toUpperCase().includes(this.state.query.toUpperCase())
+      }
+    ))){
+      const preInit = this.state.init;
+      const newInit = preInit + 21;
+      const newEnd = preEnd + 21;
+      this.setState({
+        init: newInit, 
+        end: newEnd
+      })
+    }
+    else{
+      console.log('error'); 
+    }
+  }
+  prevPageSelect(){
+    const preInit = this.state.initSelect;
+    if(preInit > 0){
+      const newInit = preInit - 21;
+      const preEnd = this.state.endSelect;
+      const newEnd = preEnd - 21;
+        this.setState({
+          initSelect: newInit, 
+          endSelect: newEnd
+        })
+    }else{
+      console.log('error'); 
+    }
+  }
+  nextPageSelect(){
+    const preEnd = this.state.endSelect;
+    if(preEnd < this.state.selectedCities.filter((item => {
+      return item.name.toUpperCase().includes(this.state.query.toUpperCase())
+      }
+    )).length){
+      const preInit = this.state.initSelect;
+      const newInit = preInit + 21;
+      const newEnd = preEnd + 21;
+      this.setState({
+        initSelect: newInit, 
+        endSelect: newEnd
+      })
+    }
+    else{
+      console.log('error'); 
+    }
   }
 
   getUserInput(event) {
     const inputValue = event.currentTarget.value;
-    this.setState({ query: inputValue });
+    this.setState({ 
+      query: inputValue,
+      init: 0, 
+      end: 20, 
+      initSelect: 0,
+      endSelect: 20
+    });
   }
   getSelectValue(event) {
     const selectValue = event.currentTarget.value;
@@ -96,22 +175,31 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="App">
+      <div className = "App">
         <Header />
-        <div className="grid__container">
+        <div className = "grid__container">
           <List
-            allSelected={this.state.allSelected}
-            selectedCities={this.state.selectedCities}
-            data={this.state.data}
-            query={this.state.query}
-            getSelectValue={this.getSelectValue}
-            getUserInput={this.getUserInput}
+            allSelected = {this.state.allSelected}
+            selectedCities = {this.state.selectedCities}
+            data = {this.state.data}
+            query = {this.state.query}
+            getSelectValue = {this.getSelectValue}
+            getUserInput = {this.getUserInput}
+            dividedData = {this.state.dividedData}
+            init = {this.state.init}
+            end = {this.state.end}
+            nextPage = {this.nextPage}
+            prevPage = {this.prevPage}
           />
           <Selected
-            query={this.state.query}
-            clearAllSelected={this.clearAllSelected}
-            clearSelected={this.clearSelected}
-            selectedCities={this.state.selectedCities}
+            query = {this.state.query}
+            clearAllSelected = {this.clearAllSelected}
+            clearSelected = {this.clearSelected}
+            selectedCities = {this.state.selectedCities}
+            initSelect = {this.state.initSelect}
+            endSelect = {this.state.endSelect}
+            nextPageSelect = {this.nextPageSelect}
+            prevPageSelect = {this.prevPageSelect}
           />
         </div>
       </div>
