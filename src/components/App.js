@@ -29,7 +29,6 @@ class App extends React.Component {
     this.nextPageSelect = this.nextPageSelect.bind(this);
     this.prevPageSelect = this.prevPageSelect.bind(this);
   }
- 
   prevPage(){
     const preInit = this.state.init;
     if(this.state.listPage !== 1){
